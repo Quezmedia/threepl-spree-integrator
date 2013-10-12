@@ -1,7 +1,7 @@
 test:
-  three_plid: 111
-  login: xxxxxxxxxx
-  password: xxxxxxxxxx
-  three_plkey: xxxxxxxxxxxxxxx
-  facility_id: 0
+  three_plid: "111"
+  login: "xxxxxxxxxx"
+  password: "xxxxxxxxxx"
+  three_plkey: "{xxxxxxxxxxxxxxx}"
+  facility_id: "0"
 

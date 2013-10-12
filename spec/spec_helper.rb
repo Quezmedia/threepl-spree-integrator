@@ -11,11 +11,10 @@ RSpec.configure do |config|
                     :ThreePLKey => LOGIN_CONFIG["three_plkey"],
                     :Login => LOGIN_CONFIG["login"],
                     :Password => LOGIN_CONFIG["password"],
-                    :FacilityId => LOGIN_CONFIG["facility_id"]}
+                    :FacilityID => LOGIN_CONFIG["facility_id"]}
 
     Nutracoapi.config do |config|
       config.login_parameters = login_params
-      config.active_logs = false
     end
   end
 end

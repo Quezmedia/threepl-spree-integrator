@@ -3,27 +3,22 @@ require 'savon'
 class Nutracoapi::Base
   attr_reader :client
   attr_reader :last_response
+  attr_reader :operation
 
   def initialize
-    namespaces = { "xmlns:soapenv"=>"http://schemas.xmlsoap.org/soap/envelope/", "xmlns:vias"=>"http://www.JOI.com/schemas/ViaSub.WMS/" }
-    @client = Savon.client(:wsdl => Nutracoapi.wsdl_endpoint,
-                           :pretty_print_xml => true,
-                           :namespace_identifier => :vias,
-                           :env_namespace => :soapenv,
-                           :namespaces => namespaces,
-                           :convert_request_keys_to => :none,
-                           :logger => Nutracoapi.logger,
-                           :log => Nutracoapi.active_logs,
-                           :ssl_verify_mode => :none)
+    @client = Savon.new(Nutracoapi.wsdl_endpoint)
   end
 
   protected
-  def call(method, message = {})
-    @last_response = @client.call(method, message: prepare_message(message))
+  def prepare_operation(operation, header, body)
+    @operation = @client.operation("ServiceExternal", "ServiceExternalSoap", operation)
+    @operation.header = header
+    @operation.body = body
+    @operation.build
   end
 
-  private
-  def prepare_message(message)
-    message.merge Nutracoapi.login_parameters
+  def call(operation, header, body)
+    prepare_operation(operation, header, body)
+    @last_response = @operation.call
   end
 end
