@@ -8,8 +8,10 @@ RSpec.configure do |config|
     LOGIN_CONFIG ||= YAML.load_file(config_file_name)["test"]
 
     login_params = {:ThreePLID => LOGIN_CONFIG["three_plid"],
+                    :ThreePLKey => LOGIN_CONFIG["three_plkey"],
                     :Login => LOGIN_CONFIG["login"],
-                    :Password => LOGIN_CONFIG["password"]}
+                    :Password => LOGIN_CONFIG["password"],
+                    :FacilityId => LOGIN_CONFIG["facility_id"]}
 
     Nutracoapi.config do |config|
       config.login_parameters = login_params

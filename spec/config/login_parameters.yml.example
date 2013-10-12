@@ -3,4 +3,5 @@ test:
   login: xxxxxxxxxx
   password: xxxxxxxxxx
   three_plkey: xxxxxxxxxxxxxxx
+  facility_id: 0
 
