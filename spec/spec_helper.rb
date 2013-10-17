@@ -11,6 +11,7 @@ RSpec.configure do |config|
                     :ThreePLKey => LOGIN_CONFIG["three_plkey"],
                     :Login => LOGIN_CONFIG["login"],
                     :Password => LOGIN_CONFIG["password"],
+                    :CustomerID =>  LOGIN_CONFIG["customer_id"],
                     :FacilityID => LOGIN_CONFIG["facility_id"]}
 
     Nutracoapi.config do |config|
