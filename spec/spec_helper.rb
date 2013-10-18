@@ -1,5 +1,6 @@
 require 'yaml'
 require 'nutracoapi'
+require 'awesome_print'
 
 RSpec.configure do |config|
   config.before(:all) do

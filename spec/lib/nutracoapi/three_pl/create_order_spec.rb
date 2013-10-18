@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Nutracoapi::CreateOrder do
+describe Nutracoapi::ThreePl::CreateOrder do
   it "create order call should work" do
     response = subject.call_create_order(
       :reference_num => Time.now.to_i,

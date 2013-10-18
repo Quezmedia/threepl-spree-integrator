@@ -17,3 +17,4 @@ test/version_tmp
 tmp
 spec/config/login_parameters.yml
 test.rb
+test2.rb

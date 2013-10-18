@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Nutracoapi::FindOrder do
+describe Nutracoapi::ThreePl::FindOrder do
   it "find order call should work" do
     reference_num = 1382031184
     response = subject.call_find_order(reference_num)

@@ -1,4 +1,4 @@
-class Nutracoapi::CreateOrder < Nutracoapi::Base
+class Nutracoapi::ThreePl::CreateOrder < Nutracoapi::ThreePl::Base
   def call_create_order(options = {})
     body = {:extLoginData => Nutracoapi.login_parameters}
     body = body.merge({:orders =>

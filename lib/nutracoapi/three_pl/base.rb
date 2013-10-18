@@ -1,6 +1,6 @@
 require 'savon'
 
-class Nutracoapi::Base
+class Nutracoapi::ThreePl::Base
   attr_reader :client
   attr_reader :last_response
   attr_reader :operation
