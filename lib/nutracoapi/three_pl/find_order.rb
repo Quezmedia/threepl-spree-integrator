@@ -33,7 +33,7 @@ class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
 
     response_object = OpenStruct.new
     response_hash.each do |k,v|
-      response_object.send("#{ k.underscore }=", v)
+      response_object.send("#{ k.underscore }=", v.to_s)
     end
 
     response_object
