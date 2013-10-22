@@ -7,7 +7,7 @@ module Nutracoapi
     end
 
     config.to_prepare do
-      root = Subscribem::Engine.root
+      root = Nutracoapi::Engine.root
       extenders_path = root + "app/extenders/**/*.rb"
       Dir.glob(extenders_path) do |file|
         Rails.configuration.cache_classes ? require(file) : load(file)
