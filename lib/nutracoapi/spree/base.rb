@@ -17,4 +17,34 @@ class Nutracoapi::Spree::Base
     prepare_operation(action, body, method, params)
     @last_response = @request.run
   end
+
+  def parse_array(array_obj)
+    array_result = Array.new
+    array_obj.each do |obj|
+      array_result << parse_hash(obj)
+    end
+    array_result
+  end
+
+  def parse_hash(json)
+    obj = OpenStruct.new
+    json.each do |k,v|
+      if v.is_a? Array
+        value = parse_array(v)
+      elsif v.is_a? Hash
+        value = parse_hash(v)
+      else
+        value = v
+      end
+      obj.send("#{k.underscore}=", value )
+    end
+    obj
+  end
+
+  def parse_response(response)
+    json_response = JSON.parse(response.body)
+    raise Exception.new(json_response["error"]) unless json_response["error"].nil?
+    parse_hash json_response
+  end
+
 end

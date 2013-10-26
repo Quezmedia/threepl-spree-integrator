@@ -17,11 +17,27 @@ class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
       }
     })
     response = call("FindOrders", {}, body)
-    parsed_response = parse_response(response)
-    return {:total_orders => response.body[:total_orders].to_i, :parsed_response => parsed_response}
+    return parse_response(response)
   end
 
   private
+  def parse_array(array_obj)
+    result = Array.new
+    array_obj.each do |obj|
+      result << parse_hash(obj)
+    end
+    result
+  end
+
+  def parse_hash(hash_obj)
+    response_object = OpenStruct.new
+    hash_obj.each do |k,v|
+      response_object.send("#{ k.underscore }=", v.to_s)
+    end
+
+    response_object
+  end
+
   def parse_response(response)
 
     if response.body[:total_orders].to_i < 1
@@ -31,11 +47,10 @@ class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
     response_hash = Nori.new.parse(response.body[:find_orders])
     response_hash = response_hash["orders"]["order"]
 
-    response_object = OpenStruct.new
-    response_hash.each do |k,v|
-      response_object.send("#{ k.underscore }=", v.to_s)
+    if response_hash.is_a?(Array)
+      parse_array(response_hash)
+    else
+      [parse_hash(response_hash)]
     end
-
-    response_object
   end
 end
