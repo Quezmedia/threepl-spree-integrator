@@ -27,4 +27,21 @@ describe Nutracoapi::OrderIntegration do
     non_shipped_oi.mark_as_shipped!
     non_shipped_oi.should be_was_shipped
   end
+
+  it "should return only non shipped for scope non_shipped" do
+    create_some_orders
+
+    subject.class.all.count.should == 4
+    subject.class.non_shipped_orders.count.should == 2
+    subject.class.non_shipped_orders.each do |oi|
+      oi.should_not be_was_shipped
+    end
+  end
+
+  def create_some_orders
+    Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "shipped")
+    Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "shipped")
+    Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "integrated")
+    Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "integrated")
+  end
 end

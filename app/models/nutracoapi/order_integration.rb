@@ -4,7 +4,6 @@ module Nutracoapi
     validates_presence_of :status
 
     scope :non_shipped_orders, -> { where.not(status: "shipped") }
-    scope :non_integrated, ->(order_numbers) {where.not(order_number: order_numbers)}
 
     def mark_as_shipped!
       self.update_columns(status: "shipped", shipped_at: Time.now)

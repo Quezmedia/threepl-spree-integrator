@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'yaml'
 require 'nutracoapi'
 require 'awesome_print'
+require 'database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -20,7 +21,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 
-  config.before(:all) do
+  config.before(:suite) do
     config_file_name = File.expand_path('config/login_parameters.yml', File.dirname(__FILE__))
 
     LOGIN_CONFIG ||= YAML.load_file(config_file_name)["test"]
@@ -35,5 +36,20 @@ RSpec.configure do |config|
     Nutracoapi.config do |config|
       config.login_parameters = login_params
     end
+
+    # Clean all tables to start
+    DatabaseCleaner.clean_with :truncation
+    # Use transactions for tests
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
+    # Start transaction for this test
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    # Rollback transaction
+    DatabaseCleaner.clean
   end
 end
