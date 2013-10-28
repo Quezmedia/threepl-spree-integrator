@@ -44,6 +44,7 @@ class Nutracoapi::Spree::Base
   def parse_response(response)
     json_response = JSON.parse(response.body)
     raise Exception.new(json_response["error"]) unless json_response["error"].nil?
+    raise Exception.new(json_response["exception"]) unless json_response["exception"].nil?
     parse_hash json_response
   end
 
