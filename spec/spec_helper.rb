@@ -35,6 +35,8 @@ RSpec.configure do |config|
 
     Nutracoapi.config do |config|
       config.login_parameters = login_params
+      config.spree_endpoint   = LOGIN_CONFIG["spree_endpoint"]
+      config.spree_token      = LOGIN_CONFIG["spree_token"]
     end
 
     # Clean all tables to start

@@ -5,4 +5,5 @@ test:
   three_plkey: "{xxxxxxxxxxxxxxx}"
   facility_id: "0"
   customer_id: "0"
-
+  spree_endpoint: "http://example.com/api"
+  spree_token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
