@@ -6,10 +6,17 @@ class Nutracoapi::ThreePl::CreateOrder < Nutracoapi::ThreePl::Base
                         [prepare_order_body(options)]
                        }
     })
-    call("CreateOrders", {}, body)
+    parse_response call("CreateOrders", {}, body).body
   end
 
   private
+  def parse_response(response_json)
+    unless response_json[:fault].blank?
+      raise Exception.new("#{response_json[:fault][:faultcode]} - #{response_json[:fault][:faultstring]} \n #{response_json[:fault][:detail]}")
+    end
+    response_json[:int32]
+  end
+
   def prepare_order_body(options = {})
     reference_num = options.fetch(:reference_num)
     company_name  = options.fetch(:company_name)
@@ -21,8 +28,7 @@ class Nutracoapi::ThreePl::CreateOrder < Nutracoapi::ThreePl::Base
     carrier       = options.fetch(:carrier)
     mode          = options.fetch(:mode)
     billing_code  = options.fetch(:billing_code)
-    account       = options.fetch(:account)
-    notes         = options.fetch(:notes)
+    notes         = options.fetch(:notes, " - ")
     products      = options.fetch(:products)
     {
       :TransInfo => {:ReferenceNum => reference_num},
@@ -39,8 +45,7 @@ class Nutracoapi::ThreePl::CreateOrder < Nutracoapi::ThreePl::Base
       :ShippingInstructions => {
         :Carrier => carrier,
         :Mode => mode,
-        :BillingCode => billing_code,
-        :Account => account
+        :BillingCode => billing_code
       },
       :Notes => notes,
       :OrderLineItems => {

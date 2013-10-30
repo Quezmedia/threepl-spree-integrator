@@ -13,14 +13,13 @@ describe Nutracoapi::ThreePl::CreateOrder do
       :country       => "US",
       :carrier       => "UPS",
       :mode          => "Ground",
-      :billing_code  => "FreightCollect",
-      :account       => "12345675",
+      :billing_code  => "Prepaid",
       :notes         => "This is a note",
       :products      => {
         :TestItem => 1
       },
     )
-    response.body[:int32].should == "1"
+    response.should == "1"
   end
 end
 

@@ -41,7 +41,7 @@ class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
   def parse_response(response)
 
     if response.body[:total_orders].to_i < 1
-      return nil
+      return []
     end
 
     response_hash = Nori.new.parse(response.body[:find_orders])

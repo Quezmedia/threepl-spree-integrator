@@ -1,6 +1,7 @@
 require 'rails'
-require 'logger'
+require "active_record/railtie"
 require 'nutracoapi/engine'
+require 'logger'
 Dir["#{ File.expand_path(File.dirname(__FILE__)) }/nutracoapi/*.rb"].each{|f| require f}
 
 module Nutracoapi

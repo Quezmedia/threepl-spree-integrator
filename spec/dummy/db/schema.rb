@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027161625) do
+ActiveRecord::Schema.define(version: 20131029191238) do
 
   create_table "nutracoapi_order_integrations", force: true do |t|
     t.string   "order_number"
-    t.string   "status",       default: "integrated"
+    t.string   "tracking_number"
+    t.string   "shipment_number"
+    t.string   "status",          default: "integrated"
     t.datetime "shipped_at"
     t.datetime "created_at"
     t.datetime "updated_at"
