@@ -26,6 +26,7 @@ describe Nutracoapi::OrderIntegration do
   it "should mark as shipped" do
     non_shipped_oi.should_not be_was_shipped
     non_shipped_oi.mark_as_shipped!("TRACK")
+    non_shipped_oi.tracking_number.should == "TRACK"
     non_shipped_oi.should be_was_shipped
   end
 
