@@ -26,12 +26,12 @@ And then execute the migrations:
 Usage
 -----
 
-The class `Nutracoapi::Broker` has two methods:
+You'll use the brokers to do the job:
 
-* `send_missing_orders_to_three_pl`
+* `Nutracoapi::BrokerSpreeToThree.new.send_missing_orders_to_three_pl`
 
   It's responsible for getting the orders in Spree and send them to 3PL
 
-* `mark_orders_as_sent`
+* `Nutracoapi::BrokerThreeToSpree.new.check_and_mark_orders_as_sent`
 
   It's responsible for checking the orders at 3PL, look for when they were shipped, and mark the orders at spree side as shipped.
