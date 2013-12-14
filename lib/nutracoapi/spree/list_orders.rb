@@ -1,3 +1,4 @@
+require 'nutracoapi/spree/base'
 class Nutracoapi::Spree::ListOrders < Nutracoapi::Spree::Base
   def list_paid_orders
     params = { "q[state_eq]" => "complete", "q[payment_state_eq]" => "paid", "q[shipment_state_eq]" => "ready" }

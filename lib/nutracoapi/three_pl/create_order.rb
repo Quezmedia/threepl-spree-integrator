@@ -1,3 +1,4 @@
+require 'nutracoapi/three_pl/base'
 class Nutracoapi::ThreePl::CreateOrder < Nutracoapi::ThreePl::Base
   def call_create_order(options = {})
     body = {:extLoginData => Nutracoapi.login_parameters}

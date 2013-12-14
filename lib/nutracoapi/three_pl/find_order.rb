@@ -1,3 +1,4 @@
+require 'nutracoapi/three_pl/base'
 class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
   def call_find_order(reference_num)
     customer_id = ::Nutracoapi.login_parameters[:CustomerID]

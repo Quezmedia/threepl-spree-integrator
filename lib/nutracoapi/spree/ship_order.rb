@@ -1,3 +1,4 @@
+require 'nutracoapi/spree/base'
 class Nutracoapi::Spree::ShipOrder < Nutracoapi::Spree::Base
   def ship_order(order_number, shipment_number, tracking_number)
     parse_response call(
