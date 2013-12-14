@@ -30,7 +30,7 @@ You'll use the brokers to do the job:
 
 * `Nutracoapi::BrokerSpreeToThree.new.send_missing_orders_to_three_pl`
 
-  It's responsible for getting the orders in Spree and send them to 3PL
+  It's responsible for getting the orders in Spree and sending them to 3PL
 
 * `Nutracoapi::BrokerThreeToSpree.new.check_and_mark_orders_as_sent`
 
