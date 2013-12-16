@@ -2,7 +2,7 @@ class Nutracoapi::BrokerSpreeToThree
   def send_missing_orders_to_three_pl
     paid_orders = spree_list_provider.list_paid_orders
     paid_orders.each do |po|
-      save_if_it_is_not_saved po
+      send_to_3pl_and_save po rescue nil
     end
   end
 
@@ -49,7 +49,7 @@ class Nutracoapi::BrokerSpreeToThree
     )
   end
 
-  def save_if_it_is_not_saved(order)
+  def send_to_3pl_and_save(order)
     unless order_already_saved? order.number
       complete_order = spree_find_provider.find_order order.number
       attributes = prepare_spree_order_attributes(complete_order)
