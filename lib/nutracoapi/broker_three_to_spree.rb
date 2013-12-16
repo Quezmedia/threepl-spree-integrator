@@ -5,7 +5,7 @@ class Nutracoapi::BrokerThreeToSpree
 
     non_shipped_orders.each do |order|
       three_order = three_find_order_provider.call_find_order(order.order_number)
-      tracking_number = three_order.tracking_number
+      tracking_number = three_order.first.tracking_number
       unless tracking_number.blank?
         spree_ship_provider.ship_order(order.order_number, order.shipment_number, tracking_number)
         order.mark_as_shipped!(tracking_number)
