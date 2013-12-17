@@ -12,8 +12,9 @@ describe Nutracoapi::BrokerThreeToSpree do
     spree_ship_provider.should_receive(:ship_order).exactly(2).times
     subject.stub(:spree_ship_provider){ spree_ship_provider }
 
+    result_array = [OpenStruct.new.tap{|o| o.tracking_number = Time.now.to_i}]
     three_find_order_provider = double()
-    three_find_order_provider.should_receive(:call_find_order).exactly(2).times.and_return(OpenStruct.new.tap{|o| o.tracking_number = Time.now.to_i})
+    three_find_order_provider.should_receive(:call_find_order).exactly(2).times.and_return(result_array)
     subject.stub(:three_find_order_provider){ three_find_order_provider }
   end
 
