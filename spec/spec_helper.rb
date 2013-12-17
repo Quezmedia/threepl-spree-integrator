@@ -43,6 +43,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
     # Use transactions for tests
     DatabaseCleaner.strategy = :transaction
+
+    Rails.logger = Logger.new(STDOUT)
   end
 
   config.before(:each) do

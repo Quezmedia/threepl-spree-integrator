@@ -22,22 +22,6 @@ class Nutracoapi::ThreePl::FindOrder < Nutracoapi::ThreePl::Base
   end
 
   private
-  def parse_array(array_obj)
-    result = Array.new
-    array_obj.each do |obj|
-      result << parse_hash(obj)
-    end
-    result
-  end
-
-  def parse_hash(hash_obj)
-    response_object = OpenStruct.new
-    hash_obj.each do |k,v|
-      response_object.send("#{ k.underscore }=", v.to_s)
-    end
-
-    response_object
-  end
 
   def parse_response(response)
 
