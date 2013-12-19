@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Nutracoapi::BrokerThreeToSpree do
+describe Nutracoapi::Broker::SentOrdersMarker do
   def create_scenario_orders
     Nutracoapi::OrderIntegration.create! order_number: 1, shipment_number: "1"
     Nutracoapi::OrderIntegration.create! order_number: 2, shipment_number: "2"

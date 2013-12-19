@@ -1,4 +1,4 @@
-class Nutracoapi::BrokerSpreeToThree
+class Nutracoapi::Broker::MissingOrdersSender
   def send_missing_orders_to_three_pl
     paid_orders = spree_list_provider.list_paid_orders
     paid_orders.each do |po|

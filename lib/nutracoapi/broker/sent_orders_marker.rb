@@ -1,4 +1,4 @@
-class Nutracoapi::BrokerThreeToSpree
+class Nutracoapi::Broker::SentOrdersMarker
 
   def check_and_mark_orders_as_sent
     non_shipped_orders = Nutracoapi::OrderIntegration.non_shipped_orders

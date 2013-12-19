@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Nutracoapi::BrokerSpreeToThree do
+describe Nutracoapi::Broker::MissingOrdersSender do
   def spree_result_obj
     YAML::load(File.open("spec/resources/spree_order.yaml").read)
   end
@@ -20,8 +20,9 @@ describe Nutracoapi::BrokerSpreeToThree do
   end
 
   it "should include the order to register" do
-    subject.send_missing_orders_to_three_pl
-    Nutracoapi::OrderIntegration.count.should >= 1
+    expect{
+      subject.send_missing_orders_to_three_pl
+    }.to change{Nutracoapi::OrderIntegration.count}
   end
 end
 
