@@ -5,9 +5,15 @@ class Nutracoapi::Spree::ListOrders < Nutracoapi::Spree::Base
     parse_response call("orders", params: params)
   end
 
+  def list_canceled_orders
+    params = { "q[state_eq]" => "canceled"}
+    parse_response call("orders", params: params)
+  end
+
   private
 
   def parse_response(response)
+    return [] if response.body.strip.empty?
     json_response = JSON.parse(response.body)
     return [] if json_response["count"].to_i < 1
     parse_array json_response["orders"]
