@@ -19,6 +19,7 @@ module Nutracoapi
       desc "Generates the migration"
       def generate_migration
         migration_template "order_integrations.rb", File.join("db/migrate", "create_nutracoapi_order_integrations.rb")
+        migration_template "add_canceled_at_to_nutracoapi_order_integrations.rb", File.join("db/migrate", "add_canceled_at_to_nutracoapi_order_integrations.rb")
       end
 
     end

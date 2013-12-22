@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029191238) do
+ActiveRecord::Schema.define(version: 20131220163208) do
 
   create_table "nutracoapi_order_integrations", force: true do |t|
     t.string   "order_number"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20131029191238) do
     t.datetime "shipped_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "canceled_at"
   end
 
 end
