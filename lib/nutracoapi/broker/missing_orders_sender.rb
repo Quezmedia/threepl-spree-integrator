@@ -2,7 +2,7 @@ class Nutracoapi::Broker::MissingOrdersSender
   def send_missing_orders_to_three_pl
     paid_orders = spree_list_provider.list_paid_orders
     paid_orders.each do |po|
-      send_to_3pl_and_save po rescue nil
+      send_to_3pl_and_save po rescue Nutracoapi.logger.error "Error on sending missing order #{po.number}"
     end
   end
 

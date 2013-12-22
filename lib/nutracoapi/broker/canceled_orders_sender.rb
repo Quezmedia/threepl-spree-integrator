@@ -1,8 +1,8 @@
 class Nutracoapi::Broker::CanceledOrdersSender
   def send_canceled_orders_to_three_pl
     canceled_orders = spree_list_provider.list_canceled_orders
-    canceled_orders.each do |po|
-      cancel_on_3pl po rescue nil
+    canceled_orders.each do |co|
+      cancel_on_3pl co rescue Nutracoapi.logger.error "Error on sending canceled order #{co.number}"
     end
   end
 
@@ -23,20 +23,24 @@ class Nutracoapi::Broker::CanceledOrdersSender
     Nutracoapi::OrderIntegration.already_saved? on
   end
 
-  def save_order(complete_order)
-    Nutracoapi::OrderIntegration.create!(
-      :order_number => complete_order.number,
-      :shipment_number => complete_order.shipments.last.number
-    )
+  def order_already_canceled?(on)
+    Nutracoapi::OrderIntegration.already_canceled? on
+  end
+
+  def mark_as_canceled(order_number)
+    found_order = Nutracoapi::OrderIntegration.where(:order_number => order_number).first
+    found_order.mark_as_canceled! if found_order
   end
 
   def cancel_on_3pl(order)
-    unless order_already_saved? order.number
-      complete_order = spree_find_provider.find_order order.number
-      result = three_create_provider.call_create_order(attributes)
+    if order_already_saved?(order.number) and not order_already_canceled?(order.number)
+      three_order = three_find_provider.call_find_order(order.number).first
+      return unless three_order
+
+      result = three_cancel_provider.call_cancel_order(three_order.warehouse_transaction_id)
 
       if result == "1"
-        save_order complete_order
+        mark_as_canceled order.number
       end
     end
   end

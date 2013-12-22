@@ -1,11 +1,10 @@
 require "spec_helper"
 
 describe Nutracoapi::Broker::MissingOrdersSender do
-  def spree_result_obj
-    YAML::load(File.open("spec/resources/spree_order.yaml").read)
-  end
 
   before do
+    spree_result_obj = YAML::load(File.open("spec/resources/spree_order.yaml").read)
+
     spree_list_provider = double()
     spree_list_provider.stub(:list_paid_orders){[ spree_result_obj ]}
     subject.stub(:spree_list_provider){spree_list_provider}

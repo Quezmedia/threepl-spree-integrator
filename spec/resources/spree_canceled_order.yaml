@@ -1,0 +1,282 @@
+--- !ruby/object:OpenStruct
+table:
+  :id: 26
+  :number: R3188231992
+  :item_total: '199.95'
+  :total: '231.35'
+  :state: canceled
+  :adjustment_total: '31.4'
+  :user_id: 1
+  :created_at: '2013-10-30T17:26:55Z'
+  :updated_at: '2013-10-30T18:46:15Z'
+  :completed_at: '2013-10-30T18:28:07Z'
+  :payment_total: '231.35'
+  :shipment_state: ready
+  :payment_state: paid
+  :email: admin@quezmedia.com
+  :special_instructions:
+  :token: 387c554c9d7d9a3c
+  :bill_address: !ruby/object:OpenStruct
+    table:
+      :id: 21
+      :firstname: F
+      :lastname: L
+      :address1: PO BOX 93716
+      :address2: ''
+      :city: Cleveland
+      :zipcode: '44101'
+      :phone: '1111111'
+      :company:
+      :alternative_phone:
+      :country_id: 49
+      :state_id: 31
+      :state_name:
+      :country: !ruby/object:OpenStruct
+        table:
+          :id: 49
+          :iso_name: UNITED STATES
+          :iso: US
+          :iso3: USA
+          :name: United States
+          :numcode: 840
+        modifiable: true
+      :state: !ruby/object:OpenStruct
+        table:
+          :id: 31
+          :name: Ohio
+          :abbr: OH
+          :country_id: 49
+        modifiable: true
+    modifiable: true
+  :ship_address: !ruby/object:OpenStruct
+    table:
+      :id: 22
+      :firstname: F
+      :lastname: L
+      :address1: PO BOX 93716
+      :address2: ''
+      :city: Cleveland
+      :zipcode: '44101'
+      :phone: '1111111'
+      :company:
+      :alternative_phone:
+      :country_id: 49
+      :state_id: 31
+      :state_name:
+      :country: !ruby/object:OpenStruct
+        table:
+          :id: 49
+          :iso_name: UNITED STATES
+          :iso: US
+          :iso3: USA
+          :name: United States
+          :numcode: 840
+        modifiable: true
+      :state: !ruby/object:OpenStruct
+        table:
+          :id: 31
+          :name: Ohio
+          :abbr: OH
+          :country_id: 49
+        modifiable: true
+    modifiable: true
+  :line_items:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 18
+      :quantity: 5
+      :price: '39.99'
+      :variant_id: 29
+      :variant: !ruby/object:OpenStruct
+        table:
+          :id: 29
+          :name: CBPLUS Green Coffee Bean
+          :sku: TestItem
+          :price: '39.99'
+          :weight:
+          :height:
+          :width:
+          :depth:
+          :is_master: true
+          :cost_price:
+          :permalink: cbplus
+          :options_text: ''
+          :option_values: []
+          :product_id: 19
+          :images:
+          - !ruby/object:OpenStruct
+            table:
+              :id: 48
+              :position: 1
+              :attachment_content_type: image/jpeg
+              :attachment_file_name: Hybrid_Labels_-_OnBottle_CBP.jpg
+              :type: Spree::Image
+              :attachment_updated_at: '2013-10-25T20:53:17Z'
+              :attachment_width: 3168
+              :attachment_height: 4752
+              :alt: ''
+              :viewable_type: Spree::Variant
+              :viewable_id: 29
+              :attachment_url: /spree/products/48/product/Hybrid_Labels_-_OnBottle_CBP.jpg?1382734397
+            modifiable: true
+        modifiable: true
+    modifiable: true
+  :payments:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 13
+      :amount: '231.35'
+      :state: completed
+      :payment_method_id: 6
+      :payment_method: !ruby/object:OpenStruct
+        table:
+          :id: 6
+          :name: Credit Card
+          :environment: staging
+        modifiable: true
+    modifiable: true
+  :shipments:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 32
+      :tracking:
+      :number: H61422183766
+      :cost: '5.0'
+      :shipped_at:
+      :state: ready
+      :order_id: R3188231992
+      :stock_location_name: default
+      :shipping_rates:
+      - !ruby/object:OpenStruct
+        table:
+          :id: 148
+          :cost: '5.0'
+          :selected: true
+          :shipment_id: 32
+          :shipping_method_id: 1
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 149
+          :cost: '10.0'
+          :selected: false
+          :shipment_id: 32
+          :shipping_method_id: 2
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 150
+          :cost: '15.0'
+          :selected: false
+          :shipment_id: 32
+          :shipping_method_id: 3
+        modifiable: true
+      :shipping_method: !ruby/object:OpenStruct
+        table:
+          :name: UPS Ground (USD)
+        modifiable: true
+      :inventory_units:
+      - !ruby/object:OpenStruct
+        table:
+          :id: 50
+          :state: on_hand
+          :variant_id: 29
+          :shipment_id: 32
+          :return_authorization_id:
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 51
+          :state: on_hand
+          :variant_id: 29
+          :shipment_id: 32
+          :return_authorization_id:
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 52
+          :state: on_hand
+          :variant_id: 29
+          :shipment_id: 32
+          :return_authorization_id:
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 53
+          :state: on_hand
+          :variant_id: 29
+          :shipment_id: 32
+          :return_authorization_id:
+        modifiable: true
+      - !ruby/object:OpenStruct
+        table:
+          :id: 54
+          :state: on_hand
+          :variant_id: 29
+          :shipment_id: 32
+          :return_authorization_id:
+        modifiable: true
+    modifiable: true
+  :adjustments:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 58
+      :source_type: Spree::Shipment
+      :source_id: 32
+      :adjustable_type: Spree::Order
+      :adjustable_id: 26
+      :originator_type: Spree::ShippingMethod
+      :originator_id: 1
+      :amount: '5.0'
+      :label: Shipping
+      :mandatory: true
+      :eligible: true
+      :created_at: '2013-10-30T18:27:58Z'
+      :updated_at: '2013-10-30T18:27:58Z'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 59
+      :source_type: Spree::Order
+      :source_id: 26
+      :adjustable_type: Spree::Order
+      :adjustable_id: 26
+      :originator_type: Spree::TaxRate
+      :originator_id: 1
+      :amount: '10.0'
+      :label: North America 5.0%
+      :mandatory: false
+      :eligible: true
+      :created_at: '2013-10-30T18:27:58Z'
+      :updated_at: '2013-10-30T18:27:58Z'
+    modifiable: true
+  - !ruby/object:OpenStruct
+    table:
+      :id: 60
+      :source_type: Spree::Order
+      :source_id: 26
+      :adjustable_type: Spree::Order
+      :adjustable_id: 26
+      :originator_type: Spree::TaxCloudTransaction
+      :originator_id: 28
+      :amount: '16.4'
+      :label: Tax
+      :mandatory: true
+      :eligible: true
+      :created_at: '2013-10-30T18:28:02Z'
+      :updated_at: '2013-10-30T18:28:02Z'
+    modifiable: true
+  :credit_cards:
+  - !ruby/object:OpenStruct
+    table:
+      :id: 12
+      :month: '10'
+      :year: '2013'
+      :cc_type:
+      :last_digits: '1'
+      :first_name: F
+      :last_name: L
+      :gateway_customer_profile_id: BGS-543453
+      :gateway_payment_profile_id:
+    modifiable: true
+modifiable: true

@@ -5,11 +5,32 @@ describe Nutracoapi::OrderIntegration do
   it {should validate_presence_of :status}
   it {should validate_presence_of :shipment_number}
 
-  let(:shipped_oi){ Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "shipped", :shipment_number => "SHIPMENT") }
-  let(:non_shipped_oi){ Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i, :status => "integrated", :shipment_number => "SHIPMENT") }
+  let(:non_shipped_oi){ subject.class.create(:order_number => Time.now.to_i, :status => "integrated", :shipment_number => "SHIPMENT") }
+  let(:shipped_oi){ subject.class.create(:order_number => Time.now.to_i, :status => "shipped", :shipment_number => "SHIPMENT", :shipped_at => Time.now) }
+  let(:canceled_oi){ subject.class.create(:order_number => Time.now.to_i, :status => "canceled", :shipment_number => "SHIPMENT", :canceled_at => Time.now) }
+
+  it "should be already_saved" do
+    order_number = non_shipped_oi.order_number
+    subject.class.already_saved?(order_number).should be_true
+  end
+
+  it "should not be already_saved" do
+    order_number = non_shipped_oi.order_number + 1000000
+    subject.class.already_saved?(order_number).should be_false
+  end
+
+  it "should be canceled" do
+    order_number = canceled_oi.order_number
+    subject.class.already_canceled?(order_number).should be_true
+  end
+
+  it "should not be canceled" do
+    order_number = non_shipped_oi.order_number
+    subject.class.already_canceled?(order_number).should be_false
+  end
 
   it "should fill status with integrated as default" do
-     new_oi = Nutracoapi::OrderIntegration.create(:order_number => Time.now.to_i)
+     new_oi = subject.class.create(:order_number => Time.now.to_i)
      new_oi.status.should == "integrated"
   end
 
@@ -28,6 +49,13 @@ describe Nutracoapi::OrderIntegration do
     non_shipped_oi.mark_as_shipped!("TRACK")
     non_shipped_oi.tracking_number.should == "TRACK"
     non_shipped_oi.should be_was_shipped
+  end
+
+  it "should mark as canceled" do
+    non_shipped_oi.should_not be_canceled
+    non_shipped_oi.mark_as_canceled!
+    non_shipped_oi.canceled_at.should_not be_nil
+    non_shipped_oi.should be_canceled
   end
 
   it "should return only non shipped for scope non_shipped" do
