@@ -36,11 +36,16 @@ class Nutracoapi::ThreePl::Base
 
   def call(operation, header, body)
     Nutracoapi.logger.info "ThreePl::Base::call - Starting"
-    #Nutracoapi.logger.info "Operation: #{operation}"
-    #Nutracoapi.logger.info "Header: #{header}"
-    #Nutracoapi.logger.info "Body: #{operation}"
+    Nutracoapi.logger.info "Operation: #{operation}"
+    Nutracoapi.logger.info "Header: #{header}"
+    Nutracoapi.logger.info "Body: #{operation}"
 
     prepare_operation(operation, header, body)
     @last_response = @operation.call
+
+    Nutracoapi.logger.info "Result:"
+    Nutracoapi.logger.info @last_response.body
+
+    @last_response
   end
 end

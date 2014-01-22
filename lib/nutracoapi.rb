@@ -27,7 +27,7 @@ module Nutracoapi
   mattr_accessor :logger
   @@logger = Logging::Logger[:root]
   @@logger.add_appenders default_appender
-  @@logger.level = :debug
+  @@logger.level = 0
 
   # To permit Rails style config initalizer
   class << self

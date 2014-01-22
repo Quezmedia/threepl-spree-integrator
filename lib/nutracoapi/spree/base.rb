@@ -14,8 +14,17 @@ class Nutracoapi::Spree::Base
   end
 
   def call(action, body: '', method: :get, params: {})
+    Nutracoapi.logger.info "Spree::Base::call - Starting"
+    Nutracoapi.logger.info "Operation - #{action}"
+    Nutracoapi.logger.info "Params - #{params}"
+
     prepare_operation(action, body, method, params)
     @last_response = @request.run
+
+    Nutracoapi.logger.info "Result:"
+    Nutracoapi.logger.info @last_response.body
+
+    @last_response
   end
 
   def parse_array(array_obj)
